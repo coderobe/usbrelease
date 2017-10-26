@@ -3,16 +3,16 @@
 ### Usage
 
 ```console
-usbrelease <BUS> [DEVICE]
+usbrelease <BUS> <DEVICE>
 ```
 
 __`<BUS>`__
 
 > _Required_.  USB bus ID on which devices are released.
 
-__`[DEVICE]`__
+__`<DEVICE>`__
 
-> _Optional_.  Specific device ID to release.
+> _Required_.  Specific device ID to release.
 
 ### Example
 
