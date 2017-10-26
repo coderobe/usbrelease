@@ -14,16 +14,17 @@ int main(int argc, char *argv[]){
                 if(fd < 1){
                         fprintf(stderr, "ERROR: Unable to access device\n");
                         return 1;
-                }
-                for(int i = 0; i < 255; i++){ // Iterate over interfaces
-                        command.ifno = i;
+                }else{
                         command.ioctl_code = USBDEVFS_DISCONNECT;
                         command.data = NULL;
-                        int ret = ioctl(fd, USBDEVFS_IOCTL, &command); // Send disconnect ioctl event
-                        if(ret != -1)
-                                printf("Releasing interface %03d:%03d : (%s)\n", argv[1], i, (!ret) ? "success" : "fail");
+                        for(int i = 0; i < 255; i++){ // Iterate over interfaces
+                                command.ifno = i;
+                                int ret = ioctl(fd, USBDEVFS_IOCTL, &command); // Send disconnect ioctl event
+                                if(ret != -1)
+                                        printf("Releasing interface %03d:%03d : (%s)\n", argv[1], i, (!ret) ? "success" : "fail");
+                        }
+                        return 0;
                 }
-                return 0;
         }else{
                 printf("Usage: %s <BUS> [DEVICE]\n\n", argv[0]);
                 printf("<BUS>\n");
