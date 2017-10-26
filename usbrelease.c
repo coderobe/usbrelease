@@ -12,7 +12,7 @@ int main(int argc, char *argv[]){
                 snprintf(buffer, 100, "/dev/bus/usb/%s/%s", argv[1], argv[2]);
                 int fd = open(buffer, O_RDWR);
                 if(fd < 1){
-                        perror("unable to open file");
+                        fprintf(stderr, "ERROR: Unable to access device\n");
                         return 1;
                 }
                 for(int i = 0; i < 255; i++){ // Iterate over interfaces
@@ -21,7 +21,7 @@ int main(int argc, char *argv[]){
                         command.data = NULL;
                         int ret = ioctl(fd, USBDEVFS_IOCTL, &command); // Send disconnect ioctl event
                         if(ret != -1)
-                                printf("releasing interface %d (%s)\n", i, (!ret) ? "success" : "fail");
+                                printf("Releasing interface %03d:%03d : (%s)\n", argv[1], i, (!ret) ? "success" : "fail");
                 }
                 return 0;
         }else{
