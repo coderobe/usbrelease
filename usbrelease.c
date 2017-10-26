@@ -25,10 +25,13 @@ int main(int argc, char *argv[]){
                 }
                 return 0;
         }else{
-                printf("usage: %s BUS DEVICE\n", argv[0]);
-                printf("Release all interfaces of the USB DEVICE on BUS\n");
+                printf("Usage: %s <BUS> [DEVICE]\n\n", argv[0]);
+                printf("<BUS>\n");
+                printf("\tRequired.  USB bus ID on which devices are released.\n\n");
+                printf("[DEVICE]\n");
+                printf("\tOptional.  Specific device ID to release.\n\n");
                 printf("Example: %s 003 015\n", argv[0]);
-                printf("         Releases all interfaces of device 15 on bus 3\n");
+                printf("\tReleases all interfaces of device 15 on bus 3\n");
                 return 1;
         }
 }
