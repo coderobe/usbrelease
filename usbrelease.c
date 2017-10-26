@@ -21,7 +21,7 @@ int main(int argc, char *argv[]){
                                 command.ifno = i;
                                 int ret = ioctl(fd, USBDEVFS_IOCTL, &command); // Send disconnect ioctl event
                                 if(ret != -1)
-                                        printf("Releasing interface %03d:%03d : (%s)\n", argv[1], i, (!ret) ? "success" : "fail");
+                                        printf("Releasing interface %03d : (%s)\n", i, (!ret) ? "success" : "fail");
                         }
                         return 0;
                 }
